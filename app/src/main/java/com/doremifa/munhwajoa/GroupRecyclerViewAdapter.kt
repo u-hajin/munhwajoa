@@ -24,16 +24,15 @@ class GroupRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = values[position]
+        val item = values[position] // item은 event 객체
+        // holder.title.text = item.title // item(event)의 타이틀 textView에 띄워주기
     }
 
     override fun getItemCount(): Int = values.size
 
     inner class ViewHolder(binding: FragmentGroupBinding) : RecyclerView.ViewHolder(binding.root) {
-
-        override fun toString(): String {
-            return super.toString()
-        }
+        // binding.~해서 fragment_group.xml에 있는 여러 imageView, textView 등등 event 정보 띄워줄 id 가져오기
+        // val title: TextView = binding.title
     }
 
 }
