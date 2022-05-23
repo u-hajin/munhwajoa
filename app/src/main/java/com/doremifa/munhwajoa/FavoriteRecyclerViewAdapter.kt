@@ -3,6 +3,7 @@ package com.doremifa.munhwajoa
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
 import com.doremifa.munhwajoa.database.Event
 import com.doremifa.munhwajoa.databinding.FragmentFavoriteBinding
 
@@ -24,16 +25,15 @@ class FavoriteRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
+        holder.title.text = item.title
     }
 
     override fun getItemCount(): Int = values.size
 
     inner class ViewHolder(binding: FragmentFavoriteBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
-        override fun toString(): String {
-            return super.toString()
-        }
+        val title: TextView = binding.title
+        
     }
 
 }

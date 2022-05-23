@@ -9,9 +9,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.doremifa.munhwajoa.database.Event
+import com.doremifa.munhwajoa.databinding.FragmentFavoriteBinding
 
 class FavoriteFragment : Fragment() {
 
+    private var binding: FragmentFavoriteBinding? = null
     private var columnCount = 1
     private var favoriteList: ArrayList<Event> = arrayListOf()
 
@@ -19,6 +21,7 @@ class FavoriteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = FragmentFavoriteBinding.inflate(layoutInflater, container, false)
         val view = inflater.inflate(R.layout.fragment_favorite_list, container, false)
 
         // Set the adapter
@@ -32,6 +35,37 @@ class FavoriteFragment : Fragment() {
             }
         }
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        
+        // db에 있는 favorite 가져와서 favoriteList에 추가해주기
+
+        // test
+        var event = Event(
+            0,
+            "클래식",
+            "송파구",
+            "피아노7",
+            "2022-05-22",
+            "아트홀",
+            "어린이",
+            "5000원",
+            "유유",
+            "피아노",
+            "url",
+            "url",
+            "2022-05-11"
+        )
+
+        favoriteList.add(event)
+        favoriteList.add(event)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 
 }
