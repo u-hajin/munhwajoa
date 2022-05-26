@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/oatmeal"
+    android:background="@color/white"
     android:orientation="vertical">
 
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,33 +24,36 @@
             android:gravity="center">
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/entire"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@color/light_green"
+                android:drawableTop="@drawable/all"
                 android:fontFamily="@font/gowundodum_regular"
-                android:text="버튼3"
+                android:text="전체"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/classic"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@color/light_green"
+                android:drawableTop="@drawable/ic_conductor"
                 android:fontFamily="@font/gowundodum_regular"
-                android:text="버튼2"
+                android:text="클래식"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/concert"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@color/light_green"
+                android:drawableTop="@drawable/ic_festival"
                 android:fontFamily="@font/gowundodum_regular"
-                android:text="버튼1"
+                android:text="콘서트"
                 android:textStyle="bold" />
         </TableRow>
 
@@ -62,33 +65,36 @@
             android:gravity="center">
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/musical"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@color/light_green"
+                android:drawableTop="@drawable/ic_music_notes"
                 android:fontFamily="@font/gowundodum_regular"
-                android:text="버튼3"
+                android:text="뮤지컬/오페라"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/dance"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@color/light_green"
+                android:drawableTop="@drawable/dancer"
                 android:fontFamily="@font/gowundodum_regular"
-                android:text="버튼2"
+                android:text="무용"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/exhibition"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@color/light_green"
+                android:drawableTop="@drawable/exhibition"
                 android:fontFamily="@font/gowundodum_regular"
-                android:text="버튼1"
+                android:text="전시/미술"
                 android:textStyle="bold" />
         </TableRow>
 
@@ -100,51 +106,85 @@
             android:gravity="center">
 
             <Button
-                android:id="@+id/button7"
+                android:id="@+id/lecture"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@color/light_green"
+                android:drawableTop="@drawable/teachings"
                 android:fontFamily="@font/gowundodum_regular"
-                android:text="버튼3"
+                android:text="문화교양/강좌"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button8"
+                android:id="@+id/play"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@color/light_green"
+                android:drawableTop="@drawable/theater"
                 android:fontFamily="@font/gowundodum_regular"
-                android:text="버튼2"
+                android:text="연극"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button9"
+                android:id="@+id/etc"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@color/light_green"
+                android:drawableTop="@drawable/more"
                 android:fontFamily="@font/gowundodum_regular"
-                android:text="버튼1"
+                android:text="기타"
                 android:textStyle="bold" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/ic_launcher_background" />
         </TableRow>
 
     </TableLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:background="@drawable/edge"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/ic_launcher_background" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="공연명" />
+
+            <TextView
+                android:id="@+id/place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="장소" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="일시" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
