@@ -39,15 +39,14 @@ class FavoriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
+
         // db에 있는 favorite 가져와서 favoriteList에 추가해주기
 
         // test
         var event = Event(
-            0,
+            "피아노7",
             "클래식",
             "송파구",
-            "피아노7",
             "2022-05-22",
             "아트홀",
             "어린이",

@@ -6,16 +6,32 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface EventDao {
 
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insertEvent(event: Event)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addFavorite(event: Event)
+    fun addFavorite(event: Event) {
+        event.setFavorite(true)
+    }
 
-    @Query("DELETE FROM favorite_table WHERE title =:title")
-    fun deleteFavorite(title: String)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun deleteFavorite(event: Event) {
+        event.setFavorite(false)
+    }
 
-    @Query("SELECT * FROM favorite_table")
-    fun readAllFavorite(): Flow<List<Event>>
+    @Query("DELETE FROM event_table WHERE title =:title")
+    fun deleteEvent(title: String)
 
-    @Query("SELECT * FROM favorite_table ORDER BY title ASC")
+    @Query("SELECT * FROM event_table")
+    fun readAllEvent(): Flow<List<Event>>
+
+    @Query("SELECT * FROM event_table ORDER BY title ASC")
     fun readTitleAsc(): Flow<List<Event>>
+
+    @Query("SELECT * FROM event_table WHERE favorite = '1'")
+    fun readFavorite(): Flow<List<Event>>
+
+    @Query("SELECT * FROM event_table WHERE codeName =:codeName")
+    fun readEventByCodeName(codeName: String): Flow<List<Event>>
 
 }
