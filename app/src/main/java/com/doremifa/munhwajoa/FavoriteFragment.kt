@@ -1,6 +1,7 @@
 package com.doremifa.munhwajoa
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.doremifa.munhwajoa.database.Event
+import com.doremifa.munhwajoa.database.EventViewModel
 import com.doremifa.munhwajoa.databinding.FragmentFavoriteBinding
 
 class FavoriteFragment : Fragment() {
@@ -16,6 +19,7 @@ class FavoriteFragment : Fragment() {
     private var binding: FragmentFavoriteBinding? = null
     private var columnCount = 1
     private var favoriteList: ArrayList<Event> = arrayListOf()
+    private lateinit var eventViewModel: EventViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,29 +41,23 @@ class FavoriteFragment : Fragment() {
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    private fun getFavorite() {
+        eventViewModel = ViewModelProvider(
+            this,
+            EventViewModel.Factory(requireActivity().application)
+        )[EventViewModel::class.java]
+
+        eventViewModel.readFavorite().observe(viewLifecycleOwner) {
+            for (event in it) {
+                favoriteList.add(event)
+            }
+        }
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) { // event 처리
         super.onViewCreated(view, savedInstanceState)
-
-        // db에 있는 favorite 가져와서 favoriteList에 추가해주기
-
-        // test
-        var event = Event(
-            "피아노7",
-            "클래식",
-            "송파구",
-            "2022-05-22",
-            "아트홀",
-            "어린이",
-            "5000원",
-            "유유",
-            "피아노",
-            "url",
-            "url",
-            "2022-05-11"
-        )
-
-        favoriteList.add(event)
-        favoriteList.add(event)
+        getFavorite()
     }
 
     override fun onDestroyView() {

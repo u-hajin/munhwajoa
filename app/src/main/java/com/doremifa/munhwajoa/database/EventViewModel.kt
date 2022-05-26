@@ -56,4 +56,8 @@ class EventViewModel(application: Application) : AndroidViewModel(application) {
         return repository.readEventByCodeName(codeName).asLiveData()
     }
 
+    fun readIncludeTitle(title: String): LiveData<List<Event>> {
+        return repository.readIncludeTitle(title).asLiveData()
+    }
+
 }
