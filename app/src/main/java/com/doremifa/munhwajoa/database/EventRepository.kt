@@ -32,4 +32,8 @@ class EventRepository(private val eventDao: EventDao) {
         return eventDao.readEventByCodeName(codeName)
     }
 
+    fun readIncludeTitle(title: String): Flow<List<Event>> {
+        return eventDao.readIncludeTitle(title)
+    }
+
 }

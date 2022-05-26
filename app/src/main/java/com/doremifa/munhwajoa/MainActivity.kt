@@ -56,6 +56,8 @@ class MainActivity : AppCompatActivity() {
             val doc = Jsoup.connect(url).parser(Parser.xmlParser()).get()
             val row = doc.select("row")
 
+            var event: Event? = null
+
             for (events in row) {
                 var codeName = events.select("CODENAME").text()
                 var guName = events.select("GUNAME").text()
@@ -70,7 +72,7 @@ class MainActivity : AppCompatActivity() {
                 var image = events.select("MAIN_IMG").text()
                 var startDate = events.select("STRTDATE").text()
 
-                var event = Event(
+                event = Event(
                     title,
                     codeName,
                     guName,
@@ -87,6 +89,9 @@ class MainActivity : AppCompatActivity() {
 
                 eventViewModel.insertEvent(event)
             }
+
+
+            eventViewModel.addFavorite(event!!)
 
         }
     }

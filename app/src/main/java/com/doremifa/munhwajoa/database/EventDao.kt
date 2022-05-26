@@ -34,4 +34,6 @@ interface EventDao {
     @Query("SELECT * FROM event_table WHERE codeName =:codeName")
     fun readEventByCodeName(codeName: String): Flow<List<Event>>
 
+    @Query("SELECT * FROM event_table WHERE title =:title")
+    fun readIncludeTitle(title: String): Flow<List<Event>>
 }

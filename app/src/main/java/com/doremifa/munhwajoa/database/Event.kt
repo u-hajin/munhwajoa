@@ -2,6 +2,7 @@ package com.doremifa.munhwajoa.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "event_table")
 data class Event(
@@ -19,7 +20,7 @@ data class Event(
     val image: String,
     val startDate: String,
     var favorite: Boolean = false
-) {
+) : Serializable {
 
     @JvmName("setFavorite1")
     fun setFavorite(setValue: Boolean) {
