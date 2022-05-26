@@ -8,6 +8,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.doremifa.munhwajoa.database.Event
 import com.doremifa.munhwajoa.database.EventViewModel
 import com.doremifa.munhwajoa.databinding.ActivityGroupBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.security.acl.Group
 
 class GroupActivity : AppCompatActivity() {
@@ -38,23 +42,29 @@ class GroupActivity : AppCompatActivity() {
 
     private fun initList() {
         if (codeName == "전체") {
-            eventViewModel.readAllEvent().observe(this) {
+            MainScope().launch {
+                withContext(Dispatchers.IO) {
+                    var events = eventViewModel.readAllEvent()
 
-                for (event in it) {
-                    data.add(event)
+                    for (event in events) {
+                        data.add(event)
+                    }
                 }
-
                 initRecyclerView()
             }
+
         } else {
-            eventViewModel.readEventByCodeName(codeName).observe(this) {
+            MainScope().launch {
+                withContext(Dispatchers.IO) {
+                    var events = eventViewModel.readEventByCodeName(codeName)
 
-                for (event in it) {
-                    data.add(event)
+                    for (event in events) {
+                        data.add(event)
+                    }
                 }
-
                 initRecyclerView()
             }
+
         }
     }
 

@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         arrayListOf(R.drawable.ic_baseline_home_24, R.drawable.ic_baseline_star_24)
 
     private val url =
-        "http://openapi.seoul.go.kr:8088/68524e4956776566383457446a7470/xml/culturalEventInfo/1/600"
+        "http://openapi.seoul.go.kr:8088/68524e4956776566383457446a7470/xml/culturalEventInfo/1/500"
 
     private lateinit var eventViewModel: EventViewModel
 
@@ -56,8 +56,6 @@ class MainActivity : AppCompatActivity() {
             val doc = Jsoup.connect(url).parser(Parser.xmlParser()).get()
             val row = doc.select("row")
 
-            var event: Event? = null
-
             for (events in row) {
                 var codeName = events.select("CODENAME").text()
                 var guName = events.select("GUNAME").text()
@@ -72,7 +70,7 @@ class MainActivity : AppCompatActivity() {
                 var image = events.select("MAIN_IMG").text()
                 var startDate = events.select("STRTDATE").text()
 
-                event = Event(
+                var event = Event(
                     title,
                     codeName,
                     guName,
@@ -89,9 +87,6 @@ class MainActivity : AppCompatActivity() {
 
                 eventViewModel.insertEvent(event)
             }
-
-
-            eventViewModel.addFavorite(event!!)
 
         }
     }

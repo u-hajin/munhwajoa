@@ -40,24 +40,24 @@ class EventViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun readAllEvent(): LiveData<List<Event>> {
-        return repository.readAllEvent().asLiveData()
+    fun readAllEvent(): List<Event> {
+        return repository.readAllEvent()
     }
 
-    fun readTitleAsc(): LiveData<List<Event>> {
-        return repository.readTitleAsc().asLiveData()
+    fun readTitleAsc(): List<Event> {
+        return repository.readTitleAsc()
     }
 
-    fun readFavorite(): LiveData<List<Event>> {
-        return repository.readFavorite().asLiveData()
+    fun readFavorite(): List<Event> {
+        return repository.readFavorite()
     }
 
-    fun readEventByCodeName(codeName: String): LiveData<List<Event>> {
-        return repository.readEventByCodeName(codeName).asLiveData()
+    fun readEventByCodeName(codeName: String): List<Event> {
+        return repository.readEventByCodeName(codeName)
     }
 
-    fun readIncludeTitle(title: String): LiveData<List<Event>> {
-        return repository.readIncludeTitle(title).asLiveData()
+    fun readIncludeTitle(title: String): List<Event> {
+        return repository.readIncludeTitle(title)
     }
 
 }

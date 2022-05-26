@@ -16,23 +16,23 @@ class EventRepository(private val eventDao: EventDao) {
         eventDao.deleteEvent(title)
     }
 
-    fun readAllEvent(): Flow<List<Event>> {
+    fun readAllEvent(): List<Event> {
         return eventDao.readAllEvent()
     }
 
-    fun readTitleAsc(): Flow<List<Event>> {
+    fun readTitleAsc(): List<Event> {
         return eventDao.readTitleAsc()
     }
 
-    fun readFavorite(): Flow<List<Event>> {
+    fun readFavorite(): List<Event> {
         return eventDao.readFavorite()
     }
 
-    fun readEventByCodeName(codeName: String): Flow<List<Event>> {
+    fun readEventByCodeName(codeName: String): List<Event> {
         return eventDao.readEventByCodeName(codeName)
     }
 
-    fun readIncludeTitle(title: String): Flow<List<Event>> {
+    fun readIncludeTitle(title: String): List<Event> {
         return eventDao.readIncludeTitle(title)
     }
 

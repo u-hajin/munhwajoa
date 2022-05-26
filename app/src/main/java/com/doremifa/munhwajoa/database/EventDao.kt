@@ -23,17 +23,17 @@ interface EventDao {
     fun deleteEvent(title: String)
 
     @Query("SELECT * FROM event_table")
-    fun readAllEvent(): Flow<List<Event>>
+    fun readAllEvent(): List<Event>
 
     @Query("SELECT * FROM event_table ORDER BY title ASC")
-    fun readTitleAsc(): Flow<List<Event>>
+    fun readTitleAsc(): List<Event>
 
     @Query("SELECT * FROM event_table WHERE favorite = '1'")
-    fun readFavorite(): Flow<List<Event>>
+    fun readFavorite(): List<Event>
 
     @Query("SELECT * FROM event_table WHERE codeName =:codeName")
-    fun readEventByCodeName(codeName: String): Flow<List<Event>>
+    fun readEventByCodeName(codeName: String): List<Event>
 
     @Query("SELECT * FROM event_table WHERE title =:title")
-    fun readIncludeTitle(title: String): Flow<List<Event>>
+    fun readIncludeTitle(title: String): List<Event>
 }

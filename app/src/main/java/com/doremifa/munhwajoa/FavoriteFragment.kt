@@ -13,6 +13,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.doremifa.munhwajoa.database.Event
 import com.doremifa.munhwajoa.database.EventViewModel
 import com.doremifa.munhwajoa.databinding.FragmentFavoriteBinding
+import kotlinx.coroutines.*
+import kotlin.coroutines.coroutineContext
 
 class FavoriteFragment : Fragment() {
 
@@ -27,6 +29,10 @@ class FavoriteFragment : Fragment() {
     ): View? {
         binding = FragmentFavoriteBinding.inflate(layoutInflater, container, false)
         val view = inflater.inflate(R.layout.fragment_favorite_list, container, false)
+        eventViewModel = ViewModelProvider(
+            this,
+            EventViewModel.Factory(requireActivity().application)
+        )[EventViewModel::class.java]
 
         // Set the adapter
         if (view is RecyclerView) {
@@ -35,29 +41,25 @@ class FavoriteFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = FavoriteRecyclerViewAdapter(favoriteList)
+
+                MainScope().launch {
+                    withContext(Dispatchers.IO) {
+                        var favorite = eventViewModel.readFavorite()
+
+                        for (event in favorite) {
+                            favoriteList.add(event)
+                        }
+                    }
+                    adapter = FavoriteRecyclerViewAdapter(favoriteList)
+                }
             }
         }
         return view
-    }
-
-    private fun getFavorite() {
-        eventViewModel = ViewModelProvider(
-            this,
-            EventViewModel.Factory(requireActivity().application)
-        )[EventViewModel::class.java]
-
-        eventViewModel.readFavorite().observe(viewLifecycleOwner) {
-            for (event in it) {
-                favoriteList.add(event)
-            }
-        }
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) { // event 처리
         super.onViewCreated(view, savedInstanceState)
-        getFavorite()
     }
 
     override fun onDestroyView() {
