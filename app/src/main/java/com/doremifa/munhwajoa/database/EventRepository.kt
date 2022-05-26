@@ -4,20 +4,32 @@ import kotlinx.coroutines.flow.Flow
 
 class EventRepository(private val eventDao: EventDao) {
 
+    fun insertEvent(event: Event) {
+        eventDao.insertEvent(event)
+    }
+
     fun addFavorite(event: Event) {
         eventDao.addFavorite(event)
     }
 
-    fun deleteFavorite(title: String) {
-        eventDao.deleteFavorite(title)
+    fun deleteEvent(title: String) {
+        eventDao.deleteEvent(title)
     }
 
-    fun readAllFavorite(): Flow<List<Event>> {
-        return eventDao.readAllFavorite()
+    fun readAllEvent(): Flow<List<Event>> {
+        return eventDao.readAllEvent()
     }
 
     fun readTitleAsc(): Flow<List<Event>> {
         return eventDao.readTitleAsc()
+    }
+
+    fun readFavorite(): Flow<List<Event>> {
+        return eventDao.readFavorite()
+    }
+
+    fun readEventByCodeName(codeName: String): Flow<List<Event>> {
+        return eventDao.readEventByCodeName(codeName)
     }
 
 }

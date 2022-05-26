@@ -32,6 +32,7 @@ class FavoriteRecyclerViewAdapter(
 
     inner class ViewHolder(binding: FragmentFavoriteBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         val title: TextView = binding.favoriteContent
     }
 

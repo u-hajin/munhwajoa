@@ -3,6 +3,7 @@ package com.doremifa.munhwajoa.database
 import android.app.Application
 import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class EventViewModel(application: Application) : AndroidViewModel(application) {
@@ -21,24 +22,38 @@ class EventViewModel(application: Application) : AndroidViewModel(application) {
 
     }
 
+    fun insertEvent(event: Event) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.insertEvent(event)
+        }
+    }
+
     fun addFavorite(event: Event) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.addFavorite(event)
         }
     }
 
-    fun deleteFavorite(title: String) {
+    fun deleteEvent(title: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.deleteFavorite(title)
+            repository.deleteEvent(title)
         }
     }
 
-    fun readAllFavorite(): LiveData<List<Event>> {
-        return repository.readAllFavorite().asLiveData()
+    fun readAllEvent(): LiveData<List<Event>> {
+        return repository.readAllEvent().asLiveData()
     }
 
     fun readTitleAsc(): LiveData<List<Event>> {
         return repository.readTitleAsc().asLiveData()
+    }
+
+    fun readFavorite(): LiveData<List<Event>> {
+        return repository.readFavorite().asLiveData()
+    }
+
+    fun readEventByCodeName(codeName: String): LiveData<List<Event>> {
+        return repository.readEventByCodeName(codeName).asLiveData()
     }
 
 }

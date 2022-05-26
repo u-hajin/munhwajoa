@@ -3,13 +3,12 @@ package com.doremifa.munhwajoa.database
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "favorite_table")
+@Entity(tableName = "event_table")
 data class Event(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    @PrimaryKey
+    val title: String,
     val codeName: String,
     val guName: String?,
-    val title: String,
     val date: String,
     val place: String,
     val target: String,
@@ -19,5 +18,11 @@ data class Event(
     val link: String,
     val image: String,
     val startDate: String,
-    val favorite: Boolean = false
-)
+    var favorite: Boolean = false
+) {
+
+    @JvmName("setFavorite1")
+    fun setFavorite(setValue: Boolean) {
+        this.favorite = setValue
+    }
+}
