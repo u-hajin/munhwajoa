@@ -16,8 +16,10 @@
         <entry key="..\:/Users/CHOI JAE WON/Documents/GitHub/munhwajoa/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.217" />
         <entry key="..\:/Users/CHOI JAE WON/Documents/GitHub/munhwajoa/app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.217" />
         <entry key="..\:/Users/CHOI JAE WON/Documents/GitHub/munhwajoa/app/src/main/res/drawable/ic_launcher_background.xml" value="0.217" />
-        <entry key="..\:/Users/CHOI JAE WON/Documents/GitHub/munhwajoa/app/src/main/res/layout/activity_detail.xml" value="0.1361111111111111" />
+        <entry key="..\:/Users/CHOI JAE WON/Documents/GitHub/munhwajoa/app/src/main/res/layout/activity_detail.xml" value="0.1" />
         <entry key="..\:/Users/CHOI JAE WON/Documents/GitHub/munhwajoa/app/src/main/res/layout/activity_group.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/CHOI JAE WON/Documents/GitHub/munhwajoa/app/src/main/res/layout/fragment_favorite.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/CHOI JAE WON/Documents/GitHub/munhwajoa/app/src/main/res/layout/fragment_favorite_list.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/CHOI JAE WON/Documents/GitHub/munhwajoa/app/src/main/res/layout/group_row.xml" value="0.36614583333333334" />
       </map>
     </option>
