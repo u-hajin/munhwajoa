@@ -35,7 +35,11 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun showMap() {
-
+        val mapstr = "geo:0,0?q="+event.place
+        val mappage = Uri.parse(mapstr)
+        val mapIntent = Intent(Intent.ACTION_VIEW, mappage)
+        mapIntent.setPackage("com.google.android.apps.maps")
+        startActivity(mapIntent)
     }
 
     private fun showHomePage() {
