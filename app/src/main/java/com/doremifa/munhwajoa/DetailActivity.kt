@@ -1,5 +1,7 @@
 package com.doremifa.munhwajoa
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
@@ -18,6 +20,28 @@ class DetailActivity : AppCompatActivity() {
 
         event = intent.getSerializableExtra("event") as Event
         showEventDetail()
+        initLayout()
+    }
+
+    private fun initLayout() {
+        binding.apply {
+            linkButton.setOnClickListener {
+                showHomePage()
+            }
+            mapButton.setOnClickListener {
+                showMap()
+            }
+        }
+    }
+
+    private fun showMap() {
+
+    }
+
+    private fun showHomePage() {
+            val webpage = Uri.parse(event.link)
+            val webIntent = Intent(Intent.ACTION_VIEW, webpage)
+            startActivity(webIntent)
     }
 
     private fun showEventDetail() {
