@@ -4,23 +4,32 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.doremifa.munhwajoa.database.Event
+import com.doremifa.munhwajoa.database.EventViewModel
 import com.doremifa.munhwajoa.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
     private lateinit var event: Event
+    private lateinit var eventViewModel: EventViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        eventViewModel = ViewModelProvider(
+            this,
+            EventViewModel.Factory(application)
+        )[EventViewModel::class.java]
+
         event = intent.getSerializableExtra("event") as Event
         showEventDetail()
         initLayout()
+        favoriteToggleClick()
     }
 
     private fun initLayout() {
@@ -35,17 +44,17 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun showMap() {
-        val mapstr = "geo:0,0?q="+event.place
-        val mappage = Uri.parse(mapstr)
-        val mapIntent = Intent(Intent.ACTION_VIEW, mappage)
+        val mapStr = "geo:0,0?q=" + event.place
+        val mapPage = Uri.parse(mapStr)
+        val mapIntent = Intent(Intent.ACTION_VIEW, mapPage)
         mapIntent.setPackage("com.google.android.apps.maps")
         startActivity(mapIntent)
     }
 
     private fun showHomePage() {
-            val webpage = Uri.parse(event.link)
-            val webIntent = Intent(Intent.ACTION_VIEW, webpage)
-            startActivity(webIntent)
+        val webpage = Uri.parse(event.link)
+        val webIntent = Intent(Intent.ACTION_VIEW, webpage)
+        startActivity(webIntent)
     }
 
     private fun showEventDetail() {
@@ -53,16 +62,28 @@ class DetailActivity : AppCompatActivity() {
             favoriteToggle.isChecked = event.favorite
             Glide.with(eventImage)
                 .load(event.image)
-                .override(400,400)
+                .override(300, 300)
                 .fitCenter()
                 .into(eventImage)
             title.text = event.title
             date.text = event.date
             place.text = event.place
-            target.text = event.target
-            fee.text = event.fee
-            player.text = event.player
-            program.text = event.program
+            target.text = if (event.target == "") "-" else event.target
+            fee.text = if (event.fee == "") "-" else event.fee
+            player.text = if (event.player == "") "-" else event.player
+            program.text = if (event.program == "") "-" else event.program
+        }
+    }
+
+    private fun favoriteToggleClick() {
+        binding.favoriteToggle.setOnClickListener {
+            if (!event.favorite) {
+                event.favorite = true
+                eventViewModel.addFavorite(event)
+            } else {
+                event.favorite = false
+                eventViewModel.deleteFavorite(event)
+            }
         }
     }
 }

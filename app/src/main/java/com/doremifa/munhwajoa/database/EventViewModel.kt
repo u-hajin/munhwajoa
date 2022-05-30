@@ -34,18 +34,14 @@ class EventViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun deleteEvent(title: String) {
+    fun deleteFavorite(event: Event) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.deleteEvent(title)
+            repository.deleteFavorite(event)
         }
     }
 
     fun readAllEvent(): List<Event> {
         return repository.readAllEvent()
-    }
-
-    fun readTitleAsc(): List<Event> {
-        return repository.readTitleAsc()
     }
 
     fun readFavorite(): List<Event> {
@@ -56,8 +52,28 @@ class EventViewModel(application: Application) : AndroidViewModel(application) {
         return repository.readEventByCodeName(codeName)
     }
 
-    fun readIncludeTitle(title: String): List<Event> {
-        return repository.readIncludeTitle(title)
+    fun readAllEventOldest(): List<Event> {
+        return repository.readAllEventOldest()
+    }
+
+    fun readAllEventNewest(): List<Event> {
+        return repository.readAllEventNewest()
+    }
+
+    fun readEventOldest(codeName: String): List<Event> {
+        return repository.readEventOldest(codeName)
+    }
+
+    fun readEventNewest(codeName: String): List<Event> {
+        return repository.readEventNewest(codeName)
+    }
+
+    fun readAllEventFree(fee: String): List<Event> {
+        return repository.readAllEventFree(fee)
+    }
+
+    fun readEventFree(codeName: String, fee: String): List<Event> {
+        return repository.readEventFree(codeName, fee)
     }
 
 }

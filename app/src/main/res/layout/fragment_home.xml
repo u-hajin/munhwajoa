@@ -11,11 +11,11 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="30dp"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="35dp">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TableRow
             android:id="@+id/tableRow1"
@@ -30,7 +30,6 @@
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/light_green"
                 android:drawableTop="@drawable/all"
-                android:fontFamily="@font/gowundodum_regular"
                 android:padding="8dp"
                 android:text="전체"
                 android:textSize="12sp"
@@ -43,7 +42,6 @@
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/light_green"
                 android:drawableTop="@drawable/ic_conductor"
-                android:fontFamily="@font/gowundodum_regular"
                 android:padding="8dp"
                 android:text="클래식"
                 android:textSize="12sp"
@@ -56,7 +54,6 @@
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/light_green"
                 android:drawableTop="@drawable/ic_festival"
-                android:fontFamily="@font/gowundodum_regular"
                 android:padding="8dp"
                 android:text="콘서트"
                 android:textSize="12sp"
@@ -67,7 +64,6 @@
             android:id="@+id/tableRow2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
             android:gravity="center">
 
             <Button
@@ -77,7 +73,6 @@
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/light_green"
                 android:drawableTop="@drawable/ic_music_notes"
-                android:fontFamily="@font/gowundodum_regular"
                 android:padding="8dp"
                 android:text="뮤지컬/오페라"
                 android:textSize="12sp"
@@ -90,7 +85,6 @@
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/light_green"
                 android:drawableTop="@drawable/dancer"
-                android:fontFamily="@font/gowundodum_regular"
                 android:padding="8dp"
                 android:text="무용"
                 android:textSize="12sp"
@@ -103,7 +97,6 @@
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/light_green"
                 android:drawableTop="@drawable/exhibition"
-                android:fontFamily="@font/gowundodum_regular"
                 android:padding="8dp"
                 android:text="전시/미술"
                 android:textSize="12sp"
@@ -114,7 +107,6 @@
             android:id="@+id/tableRow3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
             android:gravity="center">
 
             <Button
@@ -124,7 +116,6 @@
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/light_green"
                 android:drawableTop="@drawable/teachings"
-                android:fontFamily="@font/gowundodum_regular"
                 android:padding="8dp"
                 android:text="문화교양/강좌"
                 android:textSize="12sp"
@@ -137,7 +128,6 @@
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/light_green"
                 android:drawableTop="@drawable/theater"
-                android:fontFamily="@font/gowundodum_regular"
                 android:padding="8dp"
                 android:text="연극"
                 android:textSize="12sp"
@@ -150,7 +140,6 @@
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/light_green"
                 android:drawableTop="@drawable/more"
-                android:fontFamily="@font/gowundodum_regular"
                 android:padding="8dp"
                 android:text="기타"
                 android:textSize="12sp"
@@ -160,46 +149,47 @@
     </TableLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/banner"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
         android:background="@drawable/edge"
-        android:padding="10dp">
+        android:orientation="horizontal"
+        android:padding="5dp">
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
             android:layout_gravity="center"
+            android:layout_margin="5dp"
             android:scaleType="fitXY"
             app:srcCompat="@drawable/ic_launcher_background" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="공연명" />
-
-            <TextView
-                android:id="@+id/place"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="장소" />
+                android:layout_marginBottom="8dp" />
 
             <TextView
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="일시" />
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 

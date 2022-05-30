@@ -1,5 +1,7 @@
 package com.doremifa.munhwajoa
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,12 +11,12 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
 import androidx.lifecycle.ViewModelProvider
 import com.doremifa.munhwajoa.database.Event
 import com.doremifa.munhwajoa.database.EventViewModel
 import com.doremifa.munhwajoa.databinding.FragmentFavoriteBinding
 import kotlinx.coroutines.*
-import kotlin.coroutines.coroutineContext
 
 class FavoriteFragment : Fragment() {
 
@@ -22,6 +24,7 @@ class FavoriteFragment : Fragment() {
     private var columnCount = 1
     private var favoriteList: ArrayList<Event> = arrayListOf()
     private lateinit var eventViewModel: EventViewModel
+    private lateinit var updateAdapter: RecyclerView.Adapter<*>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +54,26 @@ class FavoriteFragment : Fragment() {
                         }
                     }
                     adapter = FavoriteRecyclerViewAdapter(favoriteList)
+
+                    (adapter as FavoriteRecyclerViewAdapter).itemClickListener = object : FavoriteRecyclerViewAdapter.OnItemClickListener {
+                        override fun OnItemClick(data: Event) {
+                            val intent = Intent(context, DetailActivity::class.java)
+                            intent.putExtra("event", data)
+                            startActivity(intent)
+                        }
+
+                        override fun favoriteToggleClick(data: Event) {
+                            if(!data.favorite) {
+                                data.favorite = true
+                                eventViewModel.addFavorite(data)
+                            } else {
+                                data.favorite = false
+                                eventViewModel.deleteFavorite(data)
+                            }
+                            updateFavoriteList()
+                        }
+                    }
+                    updateAdapter = adapter as RecyclerView.Adapter<*>
                 }
             }
         }
@@ -65,6 +88,25 @@ class FavoriteFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+        updateFavoriteList()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun updateFavoriteList() {
+        MainScope().launch {
+            withContext(Dispatchers.IO) {
+                var favorite = eventViewModel.readFavorite()
+                favoriteList.clear()
+                for (event in favorite) {
+                    favoriteList.add(event)
+                }
+            }
+            updateAdapter.notifyDataSetChanged()
+        }
     }
 
 }

@@ -1,5 +1,6 @@
 package com.doremifa.munhwajoa.database
 
+import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
 class EventRepository(private val eventDao: EventDao) {
@@ -12,16 +13,12 @@ class EventRepository(private val eventDao: EventDao) {
         eventDao.addFavorite(event)
     }
 
-    fun deleteEvent(title: String) {
-        eventDao.deleteEvent(title)
+    fun deleteFavorite(event: Event) {
+        eventDao.deleteFavorite(event)
     }
 
     fun readAllEvent(): List<Event> {
         return eventDao.readAllEvent()
-    }
-
-    fun readTitleAsc(): List<Event> {
-        return eventDao.readTitleAsc()
     }
 
     fun readFavorite(): List<Event> {
@@ -32,8 +29,28 @@ class EventRepository(private val eventDao: EventDao) {
         return eventDao.readEventByCodeName(codeName)
     }
 
-    fun readIncludeTitle(title: String): List<Event> {
-        return eventDao.readIncludeTitle(title)
+    fun readAllEventOldest(): List<Event> {
+        return eventDao.readAllEventOldest()
+    }
+
+    fun readAllEventNewest(): List<Event> {
+        return eventDao.readAllEventNewest()
+    }
+
+    fun readEventOldest(codeName: String): List<Event> {
+        return eventDao.readEventOldest(codeName)
+    }
+
+    fun readEventNewest(codeName: String): List<Event> {
+        return eventDao.readEventNewest(codeName)
+    }
+
+    fun readAllEventFree(fee: String): List<Event> {
+        return eventDao.readAllEventFree(fee)
+    }
+
+    fun readEventFree(codeName: String, fee: String): List<Event> {
+        return eventDao.readEventFree(codeName, fee)
     }
 
 }
