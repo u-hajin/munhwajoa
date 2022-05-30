@@ -165,13 +165,13 @@ class MainActivity : AppCompatActivity() {
             if (favoriteList.isNotEmpty()) {
                 for (event in favoriteList) {
                     if (event.startDate.contains(tomorrow)) {
-                        message += event.title + " - " + event.place + "\n"
+                        message += event.title + " : " + event.place + "\n"
                         flag = true
                     }
                 }
 
                 if (flag) {
-                    message += "\n" + favoriteList.size.toString() + "개의 행사가 내일부터 시작됩니다!\n"
+                    message += "\n" + "위의 행사가 내일부터 시작됩니다!\n"
                     setNotification()
                 }
             }
