@@ -152,7 +152,7 @@ class MainActivity : AppCompatActivity() {
 
         var timeToDate = date.time
         var tomorrow = SimpleDateFormat("yyyy-MM-dd").format(timeToDate)
-        var flag = false
+        var flag = 0
 
         message += "즐겨찾기에 등록한 행사 중\n\n"
 
@@ -166,12 +166,12 @@ class MainActivity : AppCompatActivity() {
                 for (event in favoriteList) {
                     if (event.startDate.contains(tomorrow)) {
                         message += event.title + " : " + event.place + "\n"
-                        flag = true
+                        flag++
                     }
                 }
 
-                if (flag) {
-                    message += "\n" + "위의 행사가 내일부터 시작됩니다!\n"
+                if (flag > 0) {
+                    message += "\n" + flag.toString() + "개의 행사가 내일부터 시작됩니다!\n"
                     setNotification()
                 }
             }
