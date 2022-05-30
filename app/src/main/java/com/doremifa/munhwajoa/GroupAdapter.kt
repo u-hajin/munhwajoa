@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.doremifa.munhwajoa.database.Event
 import com.doremifa.munhwajoa.databinding.GroupRowBinding
 
@@ -49,6 +50,11 @@ class GroupAdapter(val items: ArrayList<Event>) : RecyclerView.Adapter<GroupAdap
             title.text = items[position].title
             date.text = items[position].date
             place.text = items[position].place
+            Glide.with(eventImage)
+                .load(items[position].image)
+                .override(400,400)
+                .fitCenter()
+                .into(eventImage)
             favoriteToggle.isChecked = items[position].favorite
         }
 
