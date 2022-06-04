@@ -46,14 +46,14 @@ class GroupAdapter(
                 results.count = items.size
                 return results
 
-            }else{
+            } else {
                 filteredList.clear()
                 for (item in items) {
                     if (item.title.contains(filterString)) {
                         filteredList.add(item)
                     }
                 }
-                if(filteredList.isEmpty()) {
+                if (filteredList.isEmpty()) {
                     results.values = filteredList
                     results.count = 0
                     return results
@@ -112,7 +112,7 @@ class GroupAdapter(
         holder: ViewHolder,
         position: Int
     ) {
-        if(filteredEvent.isNotEmpty()) {
+        if (filteredEvent.isNotEmpty()) {
             holder.binding.apply {
                 title.text = filteredEvent[position].title
                 date.text = filteredEvent[position].date
@@ -129,7 +129,7 @@ class GroupAdapter(
     }
 
     override fun getItemCount(): Int {
-        return items.size
+        return filteredEvent.size
     }
 
     fun notifyChange() {
