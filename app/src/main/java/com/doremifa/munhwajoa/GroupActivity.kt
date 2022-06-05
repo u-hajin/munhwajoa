@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -18,14 +17,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.security.acl.Group
 
 const val FREE = "무료"
 
 class GroupActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityGroupBinding
-    private var data: ArrayList<Event> = ArrayList()
+    private var data = ArrayList<Event>()
     private lateinit var adapter: GroupAdapter
     private var codeName: String = ""
     private lateinit var eventViewModel: EventViewModel

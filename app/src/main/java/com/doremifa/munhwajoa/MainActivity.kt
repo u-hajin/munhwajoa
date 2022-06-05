@@ -9,12 +9,8 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewpager.widget.ViewPager
-import androidx.viewpager2.widget.ViewPager2
 import com.doremifa.munhwajoa.database.Event
 import com.doremifa.munhwajoa.database.EventViewModel
 import com.doremifa.munhwajoa.databinding.ActivityMainBinding
@@ -37,8 +33,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var eventViewModel: EventViewModel
 
-    private var favoriteList: ArrayList<Event> = arrayListOf()
-    private var alarmText: String = "내일 있을 행사로는\n"
+    private var favoriteList = ArrayList<Event>()
     private var message = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -104,47 +99,6 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-
-//    private fun checkFavoriteDay() {
-//        var calendar = Calendar.getInstance()   // 현재 시스템 상 달력
-//        calendar.add(Calendar.DAY_OF_YEAR, 1)  // 현재 날짜로부터 내일 날짜
-//
-//        var D_Day = calendar.time
-//        var formatter = SimpleDateFormat("yyyy-MM-dd") //날짜의 모양을 원하는 대로 변경 해 준다.
-//        //formatter.timeZone = TimeZone.getTimeZone("Asia/Seoul")
-//        var D_DayText = formatter.format(D_Day)
-//
-//        var num = 0
-//
-//        // 날짜가 정확히 하루 전날인지 확인할 기능 추가해야함
-//        MainScope().launch {
-//            withContext(Dispatchers.IO) {
-//                favoriteList = eventViewModel.readFavorite()
-//            }
-//            if (favoriteList.isNotEmpty()) {
-//                // 즐겨찾기가 하나라도 있을 시 기능 수행
-//                for (event in favoriteList) {
-//                    if (D_DayText.equals(event.date.split("~")[0])) {
-//                        alarmText += event.title + "\n"
-//                        num++
-//                    }
-//                } // 현재 날짜와 동일할 경우, 알람 문자열에 추가
-//            }
-////            alarm_D_Day()
-//        }
-//    }
-
-//    private fun alarm_D_Day() {
-//        if (favoriteList.isNotEmpty()) {
-//            Toast.makeText(
-//                this,
-//                alarmText + "등 입니다 :)",
-//                Toast.LENGTH_SHORT
-//            ).show()
-//        } else {
-//            Toast.makeText(this, "내일은 행사가 없습니다", Toast.LENGTH_SHORT).show()
-//        }
-//    }
 
     private fun setMessage() {
         val date = Calendar.getInstance()

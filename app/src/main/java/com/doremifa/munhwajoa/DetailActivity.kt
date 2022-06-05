@@ -60,11 +60,13 @@ class DetailActivity : AppCompatActivity() {
     private fun showEventDetail() {
         binding.apply {
             favoriteToggle.isChecked = event.favorite
-            Glide.with(eventImage)
+
+            Glide.with(applicationContext)
                 .load(event.image)
                 .override(300, 300)
                 .fitCenter()
                 .into(eventImage)
+
             title.text = event.title
             date.text = event.date
             place.text = event.place

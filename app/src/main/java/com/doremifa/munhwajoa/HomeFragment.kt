@@ -2,7 +2,6 @@ package com.doremifa.munhwajoa
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,7 +21,7 @@ class HomeFragment : Fragment() {
     private var binding: FragmentHomeBinding? = null
     private var select: String = ""
     private lateinit var eventViewModel: EventViewModel
-    private var data: ArrayList<Event> = arrayListOf()
+    private var data = ArrayList<Event>()
     private lateinit var bannerEvent: Event
 
     override fun onCreateView(
@@ -31,7 +30,7 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
+
         eventViewModel = ViewModelProvider(
             this,
             EventViewModel.Factory(requireActivity().application)
@@ -61,7 +60,7 @@ class HomeFragment : Fragment() {
                     data.addAll(eventViewModel.readEventByCodeName(favorite[random.nextInt(favorite.size)].codeName))
                 }
             }
-            //if readfavorite is empty
+
             if (favorite.isEmpty() && events.isNotEmpty()) {
 
                 //generate a random number between 0 to size of all events
@@ -72,7 +71,7 @@ class HomeFragment : Fragment() {
                     title.text = events[randomNum].title
                     date.text = events[randomNum].date
                     place.text = events[randomNum].place
-                    Glide.with(imageView)
+                    Glide.with(requireContext())
                         .load(events[randomNum].image)
                         .override(400, 400)
                         .fitCenter()
@@ -86,10 +85,9 @@ class HomeFragment : Fragment() {
                     title.text = data[randomNum].title
                     date.text = data[randomNum].date
                     place.text = data[randomNum].place
-                    Glide.with(imageView)
+                    Glide.with(requireContext())
                         .load(data[randomNum].image)
                         .override(400, 400)
-                        .fallback(R.drawable.test)
                         .fitCenter()
                         .into(imageView)
                 }

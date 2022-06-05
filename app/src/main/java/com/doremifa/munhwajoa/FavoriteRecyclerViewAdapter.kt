@@ -1,5 +1,6 @@
 package com.doremifa.munhwajoa
 
+import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,13 +10,15 @@ import android.widget.ToggleButton
 import com.bumptech.glide.Glide
 import com.doremifa.munhwajoa.database.Event
 import com.doremifa.munhwajoa.databinding.FragmentFavoriteBinding
-import org.w3c.dom.Text
 
 class FavoriteRecyclerViewAdapter(
     private val values: List<Event>
 ) : RecyclerView.Adapter<FavoriteRecyclerViewAdapter.ViewHolder>() {
 
+    private lateinit var context: Context
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        context = parent.context
 
         return ViewHolder(
             FragmentFavoriteBinding.inflate(
@@ -28,7 +31,7 @@ class FavoriteRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-        Glide.with(holder.image)
+        Glide.with(context)
             .load(item.image)
             .override(400, 400)
             .fitCenter()
@@ -44,7 +47,7 @@ class FavoriteRecyclerViewAdapter(
 
     interface OnItemClickListener {
         fun OnItemClick(data: Event)
-        fun favoriteToggleClick(data: Event)
+        fun favoriteToggleClick(data: Event, position: Int)
     }
 
     var itemClickListener: OnItemClickListener? = null
@@ -63,7 +66,7 @@ class FavoriteRecyclerViewAdapter(
                 itemClickListener?.OnItemClick(values[adapterPosition])
             }
             binding.favoriteToggle.setOnClickListener {
-                itemClickListener?.favoriteToggleClick(values[adapterPosition])
+                itemClickListener?.favoriteToggleClick(values[adapterPosition], adapterPosition)
             }
         }
     }
