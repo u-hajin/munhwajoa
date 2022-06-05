@@ -3,7 +3,6 @@ package com.doremifa.munhwajoa
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import androidx.lifecycle.ViewModelProvider
 import com.doremifa.munhwajoa.database.Event
 import com.doremifa.munhwajoa.database.EventViewModel
@@ -22,7 +20,7 @@ class FavoriteFragment : Fragment() {
 
     private var binding: FragmentFavoriteBinding? = null
     private var columnCount = 1
-    private var favoriteList: ArrayList<Event> = arrayListOf()
+    private var favoriteList = ArrayList<Event>()
     private lateinit var eventViewModel: EventViewModel
     private lateinit var updateAdapter: RecyclerView.Adapter<*>
 
@@ -37,7 +35,6 @@ class FavoriteFragment : Fragment() {
             EventViewModel.Factory(requireActivity().application)
         )[EventViewModel::class.java]
 
-        // Set the adapter
         if (view is RecyclerView) {
             with(view) {
                 layoutManager = when {
@@ -55,24 +52,21 @@ class FavoriteFragment : Fragment() {
                     }
                     adapter = FavoriteRecyclerViewAdapter(favoriteList)
 
-                    (adapter as FavoriteRecyclerViewAdapter).itemClickListener = object : FavoriteRecyclerViewAdapter.OnItemClickListener {
-                        override fun OnItemClick(data: Event) {
-                            val intent = Intent(context, DetailActivity::class.java)
-                            intent.putExtra("event", data)
-                            startActivity(intent)
-                        }
+                    (adapter as FavoriteRecyclerViewAdapter).itemClickListener =
+                        object : FavoriteRecyclerViewAdapter.OnItemClickListener {
+                            override fun OnItemClick(data: Event) {
+                                val intent = Intent(context, DetailActivity::class.java)
+                                intent.putExtra("event", data)
+                                startActivity(intent)
+                            }
 
-                        override fun favoriteToggleClick(data: Event) {
-                            if(!data.favorite) {
-                                data.favorite = true
-                                eventViewModel.addFavorite(data)
-                            } else {
+                            override fun favoriteToggleClick(data: Event, position: Int) {
                                 data.favorite = false
                                 eventViewModel.deleteFavorite(data)
+                                favoriteList.removeAt(position)
+                                updateAdapter.notifyItemRemoved(position)
                             }
-                            updateFavoriteList()
                         }
-                    }
                     updateAdapter = adapter as RecyclerView.Adapter<*>
                 }
             }
@@ -81,7 +75,7 @@ class FavoriteFragment : Fragment() {
 
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) { // event 처리
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
 

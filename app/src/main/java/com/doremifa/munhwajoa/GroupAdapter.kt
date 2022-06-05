@@ -2,7 +2,6 @@ package com.doremifa.munhwajoa
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
@@ -48,16 +47,13 @@ class GroupAdapter(
 
             } else {
                 filteredList.clear()
+
                 for (item in items) {
                     if (item.title.contains(filterString)) {
                         filteredList.add(item)
                     }
                 }
-                if (filteredList.isEmpty()) {
-                    results.values = filteredList
-                    results.count = 0
-                    return results
-                }
+
             }
             results.values = filteredList
             results.count = filteredList.size
@@ -117,7 +113,7 @@ class GroupAdapter(
                 title.text = filteredEvent[position].title
                 date.text = filteredEvent[position].date
                 place.text = filteredEvent[position].place
-                Glide.with(eventImage)
+                Glide.with(context)
                     .load(filteredEvent[position].image)
                     .override(400, 400)
                     .fitCenter()
