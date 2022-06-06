@@ -1,4 +1,4 @@
-package com.doremifa.munhwajoa
+package com.doremifa.munhwajoa.activity
 
 import android.content.Intent
 import android.net.Uri

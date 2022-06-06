@@ -1,4 +1,4 @@
-package com.doremifa.munhwajoa
+package com.doremifa.munhwajoa.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -8,6 +8,7 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.doremifa.munhwajoa.R
 import com.doremifa.munhwajoa.database.Event
 import com.doremifa.munhwajoa.databinding.GroupRowBinding
 
@@ -117,6 +118,8 @@ class GroupAdapter(
                     .load(filteredEvent[position].image)
                     .override(400, 400)
                     .fitCenter()
+                    .error(R.drawable.error_img)
+                    .fallback(R.drawable.error_img)
                     .into(eventImage)
 
                 favoriteToggle.isChecked = filteredEvent[position].favorite

@@ -1,4 +1,4 @@
-package com.doremifa.munhwajoa
+package com.doremifa.munhwajoa.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter
 import android.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.doremifa.munhwajoa.adapter.GroupAdapter
 import com.doremifa.munhwajoa.database.Event
 import com.doremifa.munhwajoa.database.EventViewModel
 import com.doremifa.munhwajoa.databinding.ActivityGroupBinding

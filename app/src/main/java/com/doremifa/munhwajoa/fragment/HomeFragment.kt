@@ -1,4 +1,4 @@
-package com.doremifa.munhwajoa
+package com.doremifa.munhwajoa.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.doremifa.munhwajoa.R
+import com.doremifa.munhwajoa.activity.DetailActivity
+import com.doremifa.munhwajoa.activity.GroupActivity
 import com.doremifa.munhwajoa.database.Event
 import com.doremifa.munhwajoa.database.EventViewModel
 import com.doremifa.munhwajoa.databinding.FragmentHomeBinding
@@ -55,42 +58,33 @@ class HomeFragment : Fragment() {
 
             withContext(Dispatchers.IO) {
                 favorite.addAll(eventViewModel.readFavorite())
-                events.addAll(eventViewModel.readAllEvent())
+
                 if (favorite.isNotEmpty()) {
                     data.addAll(eventViewModel.readEventByCodeName(favorite[random.nextInt(favorite.size)].codeName))
+                } else {
+                    events.addAll(eventViewModel.readAllEvent())
                 }
             }
 
             if (favorite.isEmpty() && events.isNotEmpty()) {
-
-                //generate a random number between 0 to size of all events
                 var randomNum = random.nextInt(events.size)
                 bannerEvent = events[randomNum].copy()
-
-                binding!!.apply {
-                    title.text = events[randomNum].title
-                    date.text = events[randomNum].date
-                    place.text = events[randomNum].place
-                    Glide.with(requireContext())
-                        .load(events[randomNum].image)
-                        .override(400, 400)
-                        .fitCenter()
-                        .into(imageView)
-                }
             } else if (favorite.isNotEmpty()) {
                 var randomNum = random.nextInt(data.size)
                 bannerEvent = data[randomNum].copy()
+            }
 
-                binding!!.apply {
-                    title.text = data[randomNum].title
-                    date.text = data[randomNum].date
-                    place.text = data[randomNum].place
-                    Glide.with(requireContext())
-                        .load(data[randomNum].image)
-                        .override(400, 400)
-                        .fitCenter()
-                        .into(imageView)
-                }
+            binding!!.apply {
+                title.text = bannerEvent.title
+                date.text = bannerEvent.date
+                place.text = bannerEvent.place
+                Glide.with(requireContext())
+                    .load(bannerEvent.image)
+                    .override(400, 400)
+                    .fitCenter()
+                    .error(R.drawable.error_img)
+                    .fallback(R.drawable.error_img)
+                    .into(imageView)
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.doremifa.munhwajoa
+package com.doremifa.munhwajoa.fragment
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -11,6 +11,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.doremifa.munhwajoa.activity.DetailActivity
+import com.doremifa.munhwajoa.R
+import com.doremifa.munhwajoa.adapter.FavoriteRecyclerViewAdapter
 import com.doremifa.munhwajoa.database.Event
 import com.doremifa.munhwajoa.database.EventViewModel
 import com.doremifa.munhwajoa.databinding.FragmentFavoriteBinding

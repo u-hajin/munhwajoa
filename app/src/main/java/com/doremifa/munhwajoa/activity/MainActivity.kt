@@ -1,4 +1,4 @@
-package com.doremifa.munhwajoa
+package com.doremifa.munhwajoa.activity
 
 import android.app.Notification
 import android.app.NotificationChannel
@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.app.NotificationCompat
 import androidx.lifecycle.ViewModelProvider
+import com.doremifa.munhwajoa.R
+import com.doremifa.munhwajoa.adapter.ViewPagerAdapter
 import com.doremifa.munhwajoa.database.Event
 import com.doremifa.munhwajoa.database.EventViewModel
 import com.doremifa.munhwajoa.databinding.ActivityMainBinding

@@ -9,8 +9,9 @@
 
 
     <TableLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="30dp"
         android:gravity="center"
@@ -19,130 +20,130 @@
 
         <TableRow
             android:id="@+id/tableRow1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center">
 
             <Button
                 android:id="@+id/entire"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="58dp"
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/light_green"
                 android:drawableTop="@drawable/all"
-                android:padding="8dp"
+                android:padding="9dp"
                 android:text="전체"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:textStyle="bold" />
 
             <Button
                 android:id="@+id/classic"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="58dp"
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/light_green"
                 android:drawableTop="@drawable/ic_conductor"
-                android:padding="8dp"
+                android:padding="9dp"
                 android:text="클래식"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:textStyle="bold" />
 
             <Button
                 android:id="@+id/concert"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="58dp"
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/light_green"
                 android:drawableTop="@drawable/ic_festival"
-                android:padding="8dp"
+                android:padding="9dp"
                 android:text="콘서트"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:textStyle="bold" />
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center">
 
             <Button
                 android:id="@+id/musical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="58dp"
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/light_green"
                 android:drawableTop="@drawable/ic_music_notes"
-                android:padding="8dp"
+                android:padding="9dp"
                 android:text="뮤지컬/오페라"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:textStyle="bold" />
 
             <Button
                 android:id="@+id/dance"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="58dp"
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/light_green"
                 android:drawableTop="@drawable/dancer"
-                android:padding="8dp"
+                android:padding="9dp"
                 android:text="무용"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:textStyle="bold" />
 
             <Button
                 android:id="@+id/exhibition"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="58dp"
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/light_green"
                 android:drawableTop="@drawable/exhibition"
-                android:padding="8dp"
+                android:padding="9dp"
                 android:text="전시/미술"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:textStyle="bold" />
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center">
 
             <Button
                 android:id="@+id/lecture"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="58dp"
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/light_green"
                 android:drawableTop="@drawable/teachings"
-                android:padding="8dp"
+                android:padding="9dp"
                 android:text="문화교양/강좌"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:textStyle="bold" />
 
             <Button
                 android:id="@+id/play"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="58dp"
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/light_green"
                 android:drawableTop="@drawable/theater"
-                android:padding="8dp"
+                android:padding="9dp"
                 android:text="연극"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:textStyle="bold" />
 
             <Button
                 android:id="@+id/etc"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="58dp"
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/light_green"
                 android:drawableTop="@drawable/more"
-                android:padding="8dp"
+                android:padding="9dp"
                 android:text="기타"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:textStyle="bold" />
         </TableRow>
 

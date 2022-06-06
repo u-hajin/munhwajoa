@@ -1,4 +1,4 @@
-package com.doremifa.munhwajoa
+package com.doremifa.munhwajoa.adapter
 
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.ToggleButton
 import com.bumptech.glide.Glide
+import com.doremifa.munhwajoa.R
 import com.doremifa.munhwajoa.database.Event
 import com.doremifa.munhwajoa.databinding.FragmentFavoriteBinding
 
@@ -35,6 +36,8 @@ class FavoriteRecyclerViewAdapter(
             .load(item.image)
             .override(400, 400)
             .fitCenter()
+            .error(R.drawable.error_img)
+            .fallback(R.drawable.error_img)
             .into(holder.image)
         holder.title.text = item.title
         holder.date.text = item.date
