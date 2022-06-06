@@ -85,13 +85,8 @@ class GroupActivity : AppCompatActivity() {
             }
 
             override fun favoriteToggleClick(data: Event) {
-                if (!data.favorite) {
-                    data.favorite = true
-                    eventViewModel.addFavorite(data)
-                } else {
-                    data.favorite = false
-                    eventViewModel.deleteFavorite(data)
-                }
+                data.favorite = !data.favorite
+                eventViewModel.updateFavorite(data)
             }
         }
 

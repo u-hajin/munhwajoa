@@ -9,12 +9,8 @@ class EventRepository(private val eventDao: EventDao) {
         eventDao.insertEvent(event)
     }
 
-    fun addFavorite(event: Event) {
-        eventDao.addFavorite(event)
-    }
-
-    fun deleteFavorite(event: Event) {
-        eventDao.deleteFavorite(event)
+    fun updateFavorite(event: Event) {
+        eventDao.updateFavorite(event)
     }
 
     fun readAllEvent(): List<Event> {

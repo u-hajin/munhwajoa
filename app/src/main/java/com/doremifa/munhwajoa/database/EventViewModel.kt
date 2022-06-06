@@ -28,15 +28,9 @@ class EventViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun addFavorite(event: Event) {
+    fun updateFavorite(event: Event) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.addFavorite(event)
-        }
-    }
-
-    fun deleteFavorite(event: Event) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.deleteFavorite(event)
+            repository.updateFavorite(event)
         }
     }
 

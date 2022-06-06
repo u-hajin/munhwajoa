@@ -79,13 +79,8 @@ class DetailActivity : AppCompatActivity() {
 
     private fun favoriteToggleClick() {
         binding.favoriteToggle.setOnClickListener {
-            if (!event.favorite) {
-                event.favorite = true
-                eventViewModel.addFavorite(event)
-            } else {
-                event.favorite = false
-                eventViewModel.deleteFavorite(event)
-            }
+            event.favorite = !event.favorite
+            eventViewModel.updateFavorite(event)
         }
     }
 }

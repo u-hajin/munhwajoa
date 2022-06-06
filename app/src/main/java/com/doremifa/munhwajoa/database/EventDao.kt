@@ -10,10 +10,7 @@ interface EventDao {
     fun insertEvent(event: Event)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addFavorite(event: Event)
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun deleteFavorite(event: Event)
+    fun updateFavorite(event: Event)
 
     @Query("SELECT * FROM event_table ORDER BY title ASC")
     fun readAllEvent(): List<Event>

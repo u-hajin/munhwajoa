@@ -65,7 +65,7 @@ class FavoriteFragment : Fragment() {
 
                             override fun favoriteToggleClick(data: Event, position: Int) {
                                 data.favorite = false
-                                eventViewModel.deleteFavorite(data)
+                                eventViewModel.updateFavorite(data)
                                 favoriteList.removeAt(position)
                                 updateAdapter.notifyItemRemoved(position)
                             }
