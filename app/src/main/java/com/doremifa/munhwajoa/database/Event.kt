@@ -20,10 +20,4 @@ data class Event(
     val image: String,
     val startDate: String,
     var favorite: Boolean = false
-) : Serializable {
-
-    @JvmName("setFavorite1")
-    fun setFavorite(setValue: Boolean) {
-        this.favorite = setValue
-    }
-}
+) : Serializable
