@@ -25,7 +25,7 @@ class HomeFragment : Fragment() {
     private var select: String = ""
     private lateinit var eventViewModel: EventViewModel
     private var data = ArrayList<Event>()
-    private lateinit var bannerEvent: Event
+    private var bannerEvent: Event? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -74,18 +74,21 @@ class HomeFragment : Fragment() {
                 bannerEvent = data[randomNum].copy()
             }
 
-            binding!!.apply {
-                title.text = bannerEvent.title
-                date.text = bannerEvent.date
-                place.text = bannerEvent.place
-                Glide.with(requireContext())
-                    .load(bannerEvent.image)
-                    .override(400, 400)
-                    .fitCenter()
-                    .error(R.drawable.error_img)
-                    .fallback(R.drawable.error_img)
-                    .into(imageView)
+            if (bannerEvent != null) {
+                binding!!.apply {
+                    title.text = bannerEvent!!.title
+                    date.text = bannerEvent!!.date
+                    place.text = bannerEvent!!.place
+                    Glide.with(requireContext())
+                        .load(bannerEvent!!.image)
+                        .override(400, 400)
+                        .fitCenter()
+                        .error(R.drawable.error_img)
+                        .fallback(R.drawable.error_img)
+                        .into(imageView)
+                }
             }
+
         }
     }
 
