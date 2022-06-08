@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
     private var favoriteList = ArrayList<Event>()
     private var message = ""
-    private lateinit var alertEvent : Event
+    private var alertEvent : Event? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -120,9 +120,11 @@ class MainActivity : AppCompatActivity() {
             }
 
             if (favoriteList.isNotEmpty()) {
-                alertEvent = favoriteList[0]
                 for (event in favoriteList) {
                     if (event.startDate.contains(tomorrow)) {
+                        if(alertEvent == null) {
+                            alertEvent = event.copy()
+                        }
                         message += event.title + " : " + event.place + "\n"
                         flag++
                     }
