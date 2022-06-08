@@ -95,13 +95,13 @@ class FavoriteFragment : Fragment() {
     @SuppressLint("NotifyDataSetChanged")
     private fun updateFavoriteList() {
         MainScope().launch {
+
             withContext(Dispatchers.IO) {
                 var favorite = eventViewModel.readFavorite()
                 favoriteList.clear()
-                for (event in favorite) {
-                    favoriteList.add(event)
-                }
+                favoriteList.addAll(favorite)
             }
+
             updateAdapter.notifyDataSetChanged()
         }
     }
